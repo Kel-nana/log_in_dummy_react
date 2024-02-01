@@ -39,17 +39,19 @@ const [passwordState, dispatchPassword] = useReducer(passwordReducer,{value:'', 
 
 console.log(emailState, 'email reducer state')
 console.log(passwordState, 'password reducer state')
+const {isValid: emailIsValid} = emailState
+const {isValid :passwordIsValid} = passwordState
   useEffect(()=>{ 
     const identifier = setTimeout(()=>{
       console.log('check form validity');
       setFormIsValid(
-        emailState.isValid && passwordState.isValid
+        emailIsValid && passwordIsValid
       );
     },800);
     return () => {
       console.log('clean out call');
     clearTimeout(identifier)};
-  },[emailState, passwordState])
+  },[emailIsValid, passwordIsValid])
 
   const emailChangeHandler = (event) => {
     // setEnteredEmail(event.target.value);
