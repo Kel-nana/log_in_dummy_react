@@ -11,7 +11,7 @@ if (action.type === 'USER_INPUT'){
 if(action.type === 'INPUT_BLUR') {
   return {value:preState.value, isValid: preState.value.includes('@')};
 }
-  return {value:'', isValid: false}
+  return {value:' ', isValid: null}
 }
 
 const passwordReducer = (preState, action) => {
@@ -21,7 +21,7 @@ const passwordReducer = (preState, action) => {
   if(action.type === 'INPUT_BLUR') {
     return {value:preState.value, isValid: preState.value.trim().length > 6};
   }
-    return {value:'', isValid: false}
+    return {value:'', isValid: null}
   }
  
 const Login = (props) => { 
@@ -32,9 +32,9 @@ const Login = (props) => {
   // const [enteredPassword, setEnteredPassword] = useState('');
   // const [passwordIsValid, setPasswordIsValid] = useState();
   
-  const[emailState, dispatchEmail] = useReducer(emailReducer, {value:'', isValid: false});
+  const[emailState, dispatchEmail] = useReducer(emailReducer, {value:'', isValid: null});
   
-  const [passwordState, dispatchPassword] = useReducer(passwordReducer,{value:'', isValid: false} )
+  const [passwordState, dispatchPassword] = useReducer(passwordReducer,{value:'', isValid: null} )
   
   const [formIsValid, setFormIsValid] = useState(false);
   
@@ -86,7 +86,7 @@ const {isValid :passwordIsValid} = passwordState
   };
 
   return (
-    <Card className={classes.login}>
+    <Card clas  sName={classes.login}>
       <form onSubmit={submitHandler}>
         <div
           className={`${classes.control} ${
