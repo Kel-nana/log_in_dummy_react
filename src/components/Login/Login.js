@@ -8,7 +8,7 @@ const emailReducer = (preState, action) => {
 if (action.type === 'USER_INPUT'){
   return {value:action.val, isValid: action.val.includes('@')};
 }
-if(action.type === 'USER_bLUR') {
+if(action.type === 'INPUT_BLUR') {
   return {value:preState.value, isValid: preState.value.includes('@')};
 }
   return {value:'', isValid: false}
@@ -18,7 +18,7 @@ const passwordReducer = (preState, action) => {
   if (action.type === 'USER_INPUT'){
     return {value:action.val, isValid: action.val.trim().length > 6};
   }
-  if(action.type === 'USER_bLUR') {
+  if(action.type === 'INPUT_BLUR') {
     return {value:preState.value, isValid: preState.value.trim().length > 6};
   }
     return {value:'', isValid: false}
@@ -31,12 +31,13 @@ const Login = (props) => {
   // same 
   // const [enteredPassword, setEnteredPassword] = useState('');
   // const [passwordIsValid, setPasswordIsValid] = useState();
+  
+  const[emailState, dispatchEmail] = useReducer(emailReducer, {value:'', isValid: false});
+  
+  const [passwordState, dispatchPassword] = useReducer(passwordReducer,{value:'', isValid: false} )
+  
   const [formIsValid, setFormIsValid] = useState(false);
-
-const[emailState, dispatchEmail] = useReducer(emailReducer, {value:'', isValid: false});
-
-const [passwordState, dispatchPassword] = useReducer(passwordReducer,{value:'', isValid: false} )
-
+  
 console.log(emailState, 'email reducer state')
 console.log(passwordState, 'password reducer state')
 const {isValid: emailIsValid} = emailState
